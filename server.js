@@ -2,12 +2,12 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const http = require("http");
-const socketio = require("socket.io");
+const { Server } = require("socket.io");
 
 const server = http.createServer(app);
 
-const io = socketio(server, {
-  origin: "*",
+const io = new Server(server, {
+  origin: "https://sleepy-kare-90cb62.netlify.app/",
 });
 app.use(cors());
 
