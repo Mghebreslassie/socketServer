@@ -8,7 +8,9 @@ app.use(cors());
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  origin: "https://sleepy-kare-90cb62.netlify.app/",
+  cors: {
+    origin: "*",
+  },
 });
 
 const PORT = process.env.PORT || 5000;
