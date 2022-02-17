@@ -13,7 +13,9 @@ const io = new Server(server, {
   },
 });
 app.use(cors());
-
+app.get("/", (req, res) => {
+  res.send("<h1>welcome sanity check</h1>");
+});
 const message = [];
 io.on("connection", (socket) => {
   console.log(socket.id);
