@@ -6,7 +6,9 @@ const socketio = require("socket.io");
 
 const server = http.createServer(app);
 
-const io = socketio(server);
+const io = socketio(server, {
+  origin: "*",
+});
 app.use(cors());
 
 const PORT = process.env.PORT || 5000;
