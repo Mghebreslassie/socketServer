@@ -4,12 +4,12 @@ const cors = require("cors");
 const http = require("http");
 const { Server } = require("socket.io");
 
+app.use(cors());
 const server = http.createServer(app);
 
 const io = new Server(server, {
   origin: "https://sleepy-kare-90cb62.netlify.app/",
 });
-app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 const message = [];
