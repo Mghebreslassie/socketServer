@@ -14,13 +14,20 @@ const io = new Server(server, {
 });
 app.use(cors());
 
+const message = [];
 io.on("connection", (socket) => {
   console.log(socket.id);
 
   //join a room
   socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log(`user with id ${socket.id} joined room ${data}`);
+    socket.join(data.roomID);
+    console.log(
+      `user with name ${data.username} and id ${socket.id} joined room ${data.roomID}`
+    );
+  });
+  socket.on("send_message", (data) => {
+    message.push(data);
+    socket.to(data.roomID).emit("recieve_message", message);
   });
   socket.on("disconnect", () => {
     console.log("user has disconnected " + socket.id);
